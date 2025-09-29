@@ -1,0 +1,33 @@
+// 1768. Merge String Alternately
+// You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+
+// Return the merged string.
+
+//Example 1:
+// Input: word1 = "abc", word2 = "pqr"
+// Output: "apbqcr"
+// Explanation: The merged string will be merged as so:
+// word1:  a   b   c
+// word2:    p   q   r
+// merged: a p b q c r
+const mergeStringAlternate = function (word1, word2) {
+  let merged = [],
+    x = 0,
+    y = 0,
+    len = word1.length > word2.length ? word1.length * 2 : word2.length * 2;
+
+  for (let i = 0; i < len; i++) {
+    if (i % 2 === 0) {
+      merged[i] = word1[x] ?? " ";
+      x++;
+    }
+    if (i % 2 !== 0) {
+      merged[i] = word2[y] ?? " ";
+      y++;
+    }
+  }
+
+  return merged.filter((x) => x.trim("") !== "").join("");
+};
+
+console.log(mergeStringAlternate("ab", "pqrs"));
