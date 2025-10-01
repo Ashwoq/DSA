@@ -94,4 +94,64 @@ function canPlaceFlowers(flowerbed, n) {
   return count >= n;
 }
 
-console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1));
+// console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1));
+
+// 345. Reverse Vowels of a String
+
+// Given a string s, reverse only all the vowels in the string and return it.
+
+// The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+function reverseVowelsSol1(s) {
+  const splitter = s.split("");
+  const vow = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+  let outter = [];
+
+  splitter.map((x, i) => {
+    if (vow.includes(x)) {
+      outter.unshift(x);
+      splitter[i] = " ";
+    }
+  });
+
+  // console.log(splitter, outter);
+  let j = 0;
+  splitter.map((x, i) => {
+    if (x === " ") {
+      splitter[i] = outter[j];
+      j++;
+    }
+  });
+
+  return splitter.join("");
+}
+
+// console.log(reverseVowelsSol1("leetcode"));
+
+function reverseVowels(s) {
+  const splitter = s.split("");
+  const vow = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+
+  let left = 0;
+  let right = splitter.length - 1;
+
+  while (left < right) {
+    if (vow.includes(splitter[left])) {
+      if (vow.includes(splitter[right])) {
+        let temp = splitter[left];
+        splitter[left] = splitter[right];
+        splitter[right] = temp;
+        left++;
+        right--;
+      } else {
+        right--;
+      }
+    } else {
+      left++;
+    }
+  }
+
+  return splitter.join("");
+}
+
+console.log(reverseVowels("leetcode"));
