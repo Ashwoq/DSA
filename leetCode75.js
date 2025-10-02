@@ -170,4 +170,56 @@ const reverseWords = function (s) {
   return s.trim().split(/\s+/).reverse().join(" ");
 };
 
-console.log(reverseWords(" a good   example        "));
+// console.log(reverseWords(" a good   example        "));
+
+// 238. Product of Array Except Self
+
+// Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+// The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+// You must write an algorithm that runs in O(n) time and without using the division operation.
+
+// const productExceptSelfSol2 = function (nums) {
+//   let count = 0;
+//   let out = [];
+
+//   while (out.length !== nums.length) {
+//     let arr = [];
+//     if (count === out.length) {
+//       arr = nums.filter((x, i) => i !== count);
+//       out.push(arr.reduce((x, y) => Math.abs(x) * Math.abs(y), 1));
+//     } else {
+//       count++;
+//     }
+//   }
+
+//   // sum = nums.reduce((x, y) => x * y, 1);
+//   // nums.forEach((x) => arr.push(sum / x));
+
+//   return out;
+// };
+
+// console.log(productExceptSelfSol2([-1, 1, 0, -3, 3]));
+
+const productExceptSelf = function (nums) {
+  const nLength = nums.length;
+  let result = new Array(nLength).fill(1);
+
+  let suffix = 1,
+    prefix = 1;
+
+  for (let i = 0; i < nLength; i++) {
+    result[i] = prefix;
+    prefix *= nums[i];
+  }
+
+  for (let i = nLength - 1; i >= 0; i--) {
+    result[i] *= suffix;
+    suffix *= nums[i];
+  }
+
+  return result;
+};
+
+console.log(productExceptSelf([1, 2, 3, 4]));
