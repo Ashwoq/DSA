@@ -222,4 +222,28 @@ const productExceptSelf = function (nums) {
   return result;
 };
 
-console.log(productExceptSelf([1, 2, 3, 4]));
+// console.log(productExceptSelf([1, 2, 3, 4]));
+
+// 283. Move Zeroes
+
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+// Note that you must do this in-place without making a copy of the array.
+
+const moveZeros = function (nums) {
+  let initial = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[initial] = nums[i];
+      initial++;
+    }
+  }
+
+  while (initial < nums.length) {
+    nums[initial] = 0;
+    initial++;
+  }
+};
+
+console.log("Move Zeros :", moveZeros([0, 1, 0, 3, 12]));
