@@ -56,4 +56,42 @@ const twoSum = function (nums, target) {
   return false;
 };
 
-console.log(twoSum([2, 11, 15, 7], 9));
+// console.log(twoSum([2, 11, 15, 7], 9));
+
+// 9. Palindrome Number
+// Given an integer x, return true if x is a palindrome, and false otherwise.
+
+const isPalindrome = function (x) {
+  let result = 0,
+    initial = x;
+  while (initial > 0) {
+    // console.log("Result", result);
+    result = result * 10 + Math.floor(initial % 10);
+    // console.log("Result", result);
+    initial = Math.floor(initial / 10);
+  }
+
+  return result === x;
+  // return String(x) === String(x).split("").reverse().join("");
+};
+
+console.log(isPalindrome(121));
+
+/*
+newlist.append() -> 121%10 -> 1
+n -> 121/10 -> 12
+
+12 -> 12%10 -> 2
+12 -> 12/10 -> 1
+
+1 -> 1%1 ?? n
+1 -> 1/10 -> 0
+n=121
+result=0;
+while(n>0){
+
+result = result * 10 + Math.floor(n%10);
+n = Math.floor(n/10)
+
+}
+*/
