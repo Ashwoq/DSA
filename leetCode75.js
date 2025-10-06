@@ -255,6 +255,7 @@ const moveZeros = function (nums) {
 // A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
 
 const isSubsequence = function (s, t) {
+  //Not sub
   // let count = [];
   // for (let i = 0; i < s.length; i++) {
   //   for (let j = i; j < t.length; j++) {
@@ -264,11 +265,12 @@ const isSubsequence = function (s, t) {
   //   }
   // }
   // return count.join("") === s;
-
+  //
+  //
+  //Not sub
   // let count = [],
   //   sub = [...s],
   //   full = [...t];
-
   // for (let i = 0; i < sub.length; i++) {
   //   for (let j = 0; j < full.length; j++) {
   //     if (sub[i] === full[j]) {
@@ -280,24 +282,35 @@ const isSubsequence = function (s, t) {
   //   }
   // }
   // return [count.join("") === s, sub, full];
+  //
+  //
+  //Submitted Method below
+  // let full = [...t],
+  //   ss = [...s],
+  //   loop = 0;
+  // iteration = 0;
+  // while (iteration < t.length && ss.length !== 0) {
+  //   if (ss[0] === full[loop]) {
+  //     ss.shift();
+  //     full.splice(0, loop + 1);
+  //     loop = 0;
+  //   } else {
+  //     loop++;
+  //   }
+  //   iteration++;
+  // }
+  // return ss.length === 0;
+  //
+  //
+  //Trying to optimize - done
 
-  let full = [...t],
-    ss = [...s],
-    loop = 0;
-  iteration = 0;
-  while (iteration < t.length && ss.length !== 0) {
-    if (ss[0] === full[loop]) {
-      ss.shift();
-      full.splice(0, loop + 1);
-      loop = 0;
-    } else {
-      loop++;
+  let j = 0;
+  for (let i = 0; i < t.length; i++) {
+    if (s[j] === t[i]) {
+      j++;
     }
-    iteration++;
   }
-
-  return ss.length === 0;
-  // return [ss, full, loop, iteration];
+  return j === s.length;
 };
 
-console.log(isSubsequence("abc", "acb"));
+console.log(isSubsequence("abcg", "ahbgdc"));
