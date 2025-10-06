@@ -246,4 +246,58 @@ const moveZeros = function (nums) {
   }
 };
 
-console.log("Move Zeros :", moveZeros([0, 1, 0, 3, 12]));
+// console.log("Move Zeros :", moveZeros([0, 1, 0, 3, 12]));
+
+// 392. Is Subsequence
+
+// Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+// A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+
+const isSubsequence = function (s, t) {
+  // let count = [];
+  // for (let i = 0; i < s.length; i++) {
+  //   for (let j = i; j < t.length; j++) {
+  //     if (s[i] === t[j]) {
+  //       count.push(s[i]);
+  //     }
+  //   }
+  // }
+  // return count.join("") === s;
+
+  // let count = [],
+  //   sub = [...s],
+  //   full = [...t];
+
+  // for (let i = 0; i < sub.length; i++) {
+  //   for (let j = 0; j < full.length; j++) {
+  //     if (sub[i] === full[j]) {
+  //       count.push(sub[i]);
+  //       sub.shift();
+  //       console.log("j ", j);
+  //     }
+  //     console.log("i", i, "l", sub.length);
+  //   }
+  // }
+  // return [count.join("") === s, sub, full];
+
+  let full = [...t],
+    ss = [...s],
+    loop = 0;
+  iteration = 0;
+  while (iteration < t.length && ss.length !== 0) {
+    if (ss[0] === full[loop]) {
+      ss.shift();
+      full.splice(0, loop + 1);
+      loop = 0;
+    } else {
+      loop++;
+    }
+    iteration++;
+  }
+
+  return ss.length === 0;
+  // return [ss, full, loop, iteration];
+};
+
+console.log(isSubsequence("abc", "acb"));
