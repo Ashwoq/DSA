@@ -313,4 +313,59 @@ const isSubsequence = function (s, t) {
   return j === s.length;
 };
 
-console.log(isSubsequence("abcg", "ahbgdc"));
+// console.log(isSubsequence("abcg", "ahbgdc"));
+
+// 334. Increasing Triplet Subsequence
+
+// Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
+
+const isIncreasingTriplet = function (nums) {
+  // NOT SOLUTION ITS CONTINOUS TRIPLET
+  // let i = 0,
+  //   j = i + 1,
+  //   k = j + 1,
+  //   loop = false;
+  // while (i + 2 < nums.length && !loop) {
+  //   if (nums[i] < nums[j] && nums[j] < nums[k]) {
+  //     // console.log("ANSWER :", nums[i], nums[j], nums[k]);
+  //     loop = true;
+  //   } else {
+  //     // console.log("i :", i, "j :", j, "k :", k);
+  //     i++;
+  //     j = i + 1;
+  //     k = j + 1;
+  //   }
+  // }
+
+  // return loop;
+
+  //
+
+  //Logically perfect
+  // let loop = false;
+
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = i + 1; j < nums.length; j++) {
+  //     for (let k = j + 1; k < nums.length; k++) {
+  //       if (nums[i] < nums[j] && nums[j] < nums[k]) {
+  //         loop = true;
+  //       }
+  //     }
+  //   }
+  // }
+  // return loop;
+
+  //optimised solution
+  let first = Infinity,
+    second = Infinity;
+
+  for (let n of nums) {
+    if (n <= first) first = n;
+    else if (n <= second) second = n;
+    else return [first, second, n];
+  }
+
+  return false;
+};
+
+console.log(isIncreasingTriplet([5, 4, 3, 2, 1]));
