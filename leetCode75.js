@@ -378,7 +378,7 @@ const isIncreasingTriplet = function (nums) {
 // answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
 // Note that the integers in the lists may be returned in any order.
 
-const findDifference = function (nums1, nums2) {
+var findDifference = function (nums1, nums2) {
   let set1 = new Set(nums1);
   let set2 = new Set(nums2);
 
@@ -389,4 +389,32 @@ const findDifference = function (nums1, nums2) {
   return [dif1, dif2];
 };
 
-console.log(findDifference([1, 2, 3], [2, 4, 6]));
+// console.log(findDifference([1, 2, 3], [2, 4, 6]));
+
+// 1732. Find the Highest Altitude
+
+// There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes. The biker starts his trip on point 0 with altitude equal 0.
+
+// You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i​​​​​​ and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
+
+const largestAltitude0 = function (gain) {
+  let out = [];
+  for (let i = 0; i < gain.length; i++) {
+    out[i] = gain[i] + (out[i - 1] ?? 0);
+  }
+  out.unshift(0);
+  return out.sort((a, b) => b - a)[0];
+};
+
+//optimised
+const largestAltitude = function (gain) {
+  let out = 0,
+    prev = out;
+  for (let i = 0; i < gain.length; i++) {
+    prev = gain[i] + prev;
+    out = out < prev ? prev : out;
+  }
+  return out;
+};
+
+console.log(largestAltitude0([-4, -3, -2, -1, 4, 3, 2]));
