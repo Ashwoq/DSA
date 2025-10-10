@@ -417,4 +417,31 @@ const largestAltitude = function (gain) {
   return out;
 };
 
-console.log(largestAltitude0([-4, -3, -2, -1, 4, 3, 2]));
+// console.log(largestAltitude([-4, -3, -2, -1, 4, 3, 2]));
+
+// 11. Container With Most Water
+
+// You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+// Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+// Return the maximum amount of water a container can store.
+
+// Notice that you may not slant the container.
+const maxArea = function (height) {
+  let l = 0,
+    r = height.length - 1,
+    max = 0;
+
+  while (l < r) {
+    min = Math.min(height[l], height[r]);
+    area = min * (r - l);
+    max = Math.max(area, max);
+
+    if (height[l] > height[r]) r--;
+    else l++;
+  }
+  return max;
+};
+
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
